@@ -32,7 +32,7 @@
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 
     /* ── NAV ── */
-     nav.top{position:fixed;top:0;left:0;right:0;height:var(--nav-h);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(3,13,26,0.85);border-bottom:1px solid var(--border);z-index:1000}
+    nav.top{position:fixed;top:0;left:0;right:0;height:var(--nav-h);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(3,13,26,0.85);border-bottom:1px solid var(--border);z-index:1000}
     .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;justify-content:space-between;align-items:center}
     .logo{font-size:1.5rem;font-weight:900;text-decoration:none;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.5px}
     .nav-links{display:flex;list-style:none;gap:4px}
@@ -45,8 +45,6 @@
     nav.mob.open{display:flex}
     nav.mob a{color:var(--muted);text-decoration:none;font-weight:500;font-size:1rem;padding:14px 16px;border-radius:10px;transition:color .2s,background .2s}
     nav.mob a:hover,nav.mob a.active{color:var(--accent);background:rgba(56,189,248,0.08)}
-
-
 
     /* ── HERO ── */
     .hero{min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:0 24px}
@@ -105,7 +103,7 @@
     .cta-box{text-align:center;background:linear-gradient(135deg,rgba(56,189,248,.07),rgba(129,140,248,.07));border:1px solid rgba(56,189,248,.13);border-radius:24px;padding:80px 40px;position:relative;overflow:hidden}
     .cta-box::before{content:'';position:absolute;top:-60%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(56,189,248,.09),transparent 65%);pointer-events:none}
     .cta-box h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
-    .cta-box p{color:var(--muted);font-size:1.05rem;margin-bottom:34px;max-width:480px;margin-left:auto;margin-right:auto;margin-bottom:34px}
+    .cta-box p{color:var(--muted);font-size:1.05rem;max-width:480px;margin-left:auto;margin-right:auto;margin-bottom:34px}
 
     /* ── FOOTER ── */
     footer{border-top:1px solid var(--border);padding:64px 24px 40px}
@@ -161,10 +159,11 @@
       *{animation-duration:.01ms!important;transition-duration:.01ms!important}
     }
 
-    /* ═══════════════ LIGHT THEME ═══════════════ */
-    nav{background:rgba(3,13,26,.96)!important;border-bottom-color:rgba(255,255,255,.09)!important}
+    /* ═══════════════ DARK NAV + FOOTER (identique à Tarifs) ═══════════════ */
+    nav.top{background:rgba(3,13,26,.96)!important;border-bottom-color:rgba(255,255,255,.09)!important}
     .nav-links a{color:rgba(226,232,240,.72)!important}
     .nav-links a:hover,.nav-links a.active{color:#fff!important;background:rgba(255,255,255,.09)!important}
+    .nav-links a.active{color:var(--accent)!important}
     nav.mob{background:rgba(3,13,26,.98)!important}
     nav.mob a{color:rgba(226,232,240,.7)!important}
     nav.mob a:hover,nav.mob a.active{color:var(--accent)!important;background:rgba(56,189,248,.1)!important}
@@ -175,7 +174,6 @@
     .foot-col ul li a,.ci{color:rgba(226,232,240,.55)!important}
     .foot-col ul li a:hover{color:var(--accent)!important}
     .foot-bottom p{color:rgba(226,232,240,.42)!important}
-    /* Content fixes */
     .btn-o{background:rgba(15,23,42,.06);color:#0f172a;border-color:rgba(15,23,42,.14)}
     .btn-o:hover{background:rgba(15,23,42,.10);border-color:rgba(15,23,42,.22);transform:translateY(-2px)}
     .feat-card,.stat-card,.testimonial-card,.faq-item,.card{box-shadow:0 1px 4px rgba(0,0,0,.07),0 0 0 1px rgba(15,23,42,.06)}
@@ -184,7 +182,7 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav class="top">
   <div class="nav-inner">
     <a href="./index.html" class="logo">G-Cours</a>
     <ul class="nav-links">
@@ -200,7 +198,7 @@
     </button>
   </div>
 </nav>
-<nav class="mob-nav" id="mob-nav" aria-label="Navigation mobile">
+<nav class="mob" id="mob-nav">
   <a href="./index.html" class="active">Accueil</a>
   <a href="./reservation.html">Réservation</a>
   <a href="./a-propos.html">À propos</a>
@@ -420,14 +418,12 @@ function toggleNav() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  // Stars
   const starPos = new Float32Array(150 * 3);
   for (let i = 0; i < 450; i++) starPos[i] = (Math.random() - 0.5) * 70;
   const starGeo = new THREE.BufferGeometry();
   starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
   scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.07, transparent: true, opacity: 0.45 })));
 
-  // Geometric shapes
   const geomFns = [
     () => new THREE.IcosahedronGeometry(1.6, 0),
     () => new THREE.OctahedronGeometry(1.2, 0),
@@ -486,7 +482,7 @@ function toggleNav() {
   });
 })();
 
-// ── 3D CARD TILT (desktop only) ──
+// ── 3D CARD TILT ──
 if (!('ontouchstart' in window)) {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('mousemove', e => {
