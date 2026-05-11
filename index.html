@@ -32,7 +32,7 @@
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 
     /* ── NAV ── */
-     nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(3,13,26,0.85);border-bottom:1px solid var(--border);z-index:1000}
+     nav.top{position:fixed;top:0;left:0;right:0;height:var(--nav-h);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(3,13,26,0.85);border-bottom:1px solid var(--border);z-index:1000}
     .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;justify-content:space-between;align-items:center}
     .logo{font-size:1.5rem;font-weight:900;text-decoration:none;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.5px}
     .nav-links{display:flex;list-style:none;gap:4px}
@@ -45,6 +45,7 @@
     nav.mob.open{display:flex}
     nav.mob a{color:var(--muted);text-decoration:none;font-weight:500;font-size:1rem;padding:14px 16px;border-radius:10px;transition:color .2s,background .2s}
     nav.mob a:hover,nav.mob a.active{color:var(--accent);background:rgba(56,189,248,0.08)}
+
 
 
     /* ── HERO ── */
