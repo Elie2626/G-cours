@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Administration – G-Cours</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --border: rgba(15,23,42,.09);
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #38bdf8;
+      --purple: #818cf8;
+      --green: #34d399;
+      --red: #f87171;
+      --gold: #fbbf24;
+      --grad: linear-gradient(135deg,#38bdf8,#818cf8);
+      --nav-h: 70px;
+      --r: 14px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav.top{position:fixed;top:0;left:0;right:0;height:var(--nav-h);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(3,13,26,.97);border-bottom:1px solid rgba(255,255,255,.09);z-index:1000}
+    .nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:1.5rem;font-weight:900;text-decoration:none;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.5px}
+    .nav-badge{font-size:.68rem;font-weight:700;background:rgba(56,189,248,.15);color:var(--accent);border:1px solid rgba(56,189,248,.3);padding:3px 10px;border-radius:6px;letter-spacing:.08em;text-transform:uppercase;margin-left:10px;vertical-align:middle}
+    .nav-back{color:rgba(226,232,240,.55);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s;display:flex;align-items:center;gap:6px}
+    .nav-back:hover{color:var(--accent)}
+
+    /* ── LOGIN ── */
+    .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;padding-top:calc(var(--nav-h) + 24px);background:linear-gradient(160deg,#f8fafc,#f1f5f9)}
+    .login-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:52px 44px;width:100%;max-width:420px;box-shadow:0 8px 40px rgba(0,0,0,.08),0 0 0 1px rgba(15,23,42,.04);text-align:center}
+    .login-logo-wrap{margin-bottom:28px}
+    .login-logo{font-size:2.2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:4px}
+    .login-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.2);color:var(--purple);font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase}
+    .login-title{font-size:1.25rem;font-weight:800;letter-spacing:-.4px;margin-bottom:6px}
+    .login-sub{color:var(--muted);font-size:.88rem;margin-bottom:32px;line-height:1.6}
+    .login-error{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.22);color:#b91c1c;font-size:.82rem;padding:10px 14px;border-radius:10px;margin-bottom:18px;display:none;text-align:left;line-height:1.5}
+    .login-error.show{display:block}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;text-align:left}
+    .field label{font-size:.76rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+    .field input{background:#f8fafc;border:1px solid rgba(15,23,42,.12);border-radius:10px;padding:13px 14px;color:var(--text);font-size:.95rem;font-family:'Inter',sans-serif;transition:border-color .2s,background .2s,box-shadow .2s;width:100%}
+    .field input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(56,189,248,.1)}
+    .field input::placeholder{color:rgba(100,116,139,.5)}
+    .login-btn{width:100%;background:var(--grad);color:#fff;border:none;padding:14px;border-radius:10px;font-size:.97rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s,transform .2s,box-shadow .2s;margin-top:10px;letter-spacing:-.2px;box-shadow:0 4px 20px rgba(56,189,248,.28)}
+    .login-btn:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 8px 28px rgba(56,189,248,.38)}
+    .login-btn:active{transform:translateY(0)}
+
+    /* ── DASHBOARD ── */
+    .dashboard{display:none;min-height:100vh;padding-top:var(--nav-h)}
+    .dashboard.visible{display:block}
+
+    .dash-bar{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:var(--nav-h);z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .dash-bar-inner{max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .dash-title{font-size:1rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px}
+    .dash-title span{color:var(--accent)}
+    .logout-btn{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.18);color:#dc2626;padding:8px 16px;border-radius:9px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;display:flex;align-items:center;gap:6px}
+    .logout-btn:hover{background:rgba(248,113,113,.14)}
+
+    .wrap{max-width:1280px;margin:0 auto;padding:28px 24px}
+
+    /* Stats */
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+    .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:box-shadow .2s}
+    .stat-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+    .stat-val{font-size:2.2rem;font-weight:900;letter-spacing:-1.5px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:4px;line-height:1}
+    .stat-label{color:var(--muted);font-size:.8rem;font-weight:500}
+
+    /* Tabs */
+    .tabs-wrap{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+    .tabs{display:flex;gap:2px;background:rgba(15,23,42,.06);border-radius:12px;padding:4px}
+    .tab-btn{background:none;border:none;padding:9px 22px;border-radius:9px;font-size:.88rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:.18s;white-space:nowrap;letter-spacing:-.1px}
+    .tab-btn.active{background:#fff;color:var(--text);box-shadow:0 1px 6px rgba(0,0,0,.1)}
+    .tab-btn:hover:not(.active){color:var(--text)}
+
+    /* Tab content */
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+
+    /* Section card */
+    .sc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .sc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+    .sc-title{font-size:.92rem;font-weight:700;display:flex;align-items:center;gap:8px;color:var(--text)}
+    .sc-title svg{opacity:.55}
+    .bc{background:rgba(56,189,248,.09);color:var(--accent);font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+    .bf{background:rgba(248,113,113,.09);color:#dc2626;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px}
+    .bg{background:rgba(52,211,153,.09);color:#059669;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px}
+
+    /* Slot blocks */
+    .day-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(100,116,139,.7);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(15,23,42,.06)}
+    .slot-block{background:#f8fafc;border:1px solid rgba(15,23,42,.07);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+    .slot-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .slot-title{font-size:.88rem;font-weight:700}
+    .slot-prog{height:3px;background:rgba(15,23,42,.08);border-radius:2px;margin-bottom:10px;overflow:hidden}
+    .slot-prog-fill{height:100%;border-radius:2px;background:var(--grad);transition:width .4s}
+    .student-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(15,23,42,.05)}
+    .student-row:last-child{border-bottom:none}
+    .student-name{font-size:.86rem;font-weight:600}
+    .student-sub{font-size:.74rem;color:var(--accent);margin-top:1px}
+    .no-s{color:var(--muted);font-size:.82rem;font-style:italic;padding:4px 0}
+
+    /* Reviews */
+    .review-card{background:#f8fafc;border:1px solid rgba(15,23,42,.07);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+    .r-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+    .r-author{display:flex;align-items:center;gap:10px}
+    .r-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.84rem;font-weight:700;flex-shrink:0}
+    .r-name{font-size:.86rem;font-weight:700}
+    .r-stars{font-size:.72rem;color:var(--gold);letter-spacing:1px;margin-top:2px}
+    .r-text{font-size:.85rem;color:var(--muted);line-height:1.65;font-style:italic}
+    .r-date{font-size:.72rem;color:var(--muted);margin-left:6px;font-style:normal}
+
+    /* QCM table */
+    .qtable{width:100%;border-collapse:collapse;font-size:.84rem}
+    .qtable th{background:rgba(56,189,248,.06);color:var(--accent);padding:10px 12px;text-align:left;font-weight:700;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+    .qtable td{padding:10px 12px;border-bottom:1px solid rgba(15,23,42,.06);color:var(--muted);vertical-align:middle}
+    .qtable td:nth-child(2){color:var(--text);font-weight:500}
+    .qtable tr:last-child td{border-bottom:none}
+    .pct-pill{display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:.82rem}
+    .pct-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+    /* Note */
+    .note-banner{background:rgba(251,191,36,.06);border:1px solid rgba(202,138,4,.2);border-radius:10px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:flex-start;gap:9px;color:#78350f;font-size:.84rem;line-height:1.6}
+    .note-banner svg{color:#d97706;flex-shrink:0;margin-top:1px}
+    .note-area{display:flex;gap:8px;align-items:flex-start}
+    .note-ta{flex:1;background:#f8fafc;border:1px solid rgba(15,23,42,.1);border-radius:9px;padding:10px 12px;font-size:.84rem;font-family:'Inter',sans-serif;color:var(--text);resize:none;transition:border-color .2s}
+    .note-ta:focus{outline:none;border-color:var(--gold);background:#fff}
+    .note-save{background:rgba(251,191,36,.1);border:1px solid rgba(202,138,4,.25);color:#92400e;padding:9px 14px;border-radius:9px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:.2s}
+    .note-save:hover{background:rgba(251,191,36,.18)}
+
+    /* Actions */
+    .del-btn{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.18);color:#dc2626;cursor:pointer;font-size:.72rem;padding:5px 11px;border-radius:6px;font-family:'Inter',sans-serif;transition:.2s;font-weight:600;white-space:nowrap}
+    .del-btn:hover{background:rgba(248,113,113,.15)}
+
+    /* Loading */
+    .ld{color:var(--muted);font-size:.86rem;text-align:center;padding:28px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .spinner{width:16px;height:16px;border:2px solid rgba(56,189,248,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;display:inline-block;flex-shrink:0}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .stats-row{grid-template-columns:1fr 1fr}
+      .tab-btn{padding:9px 14px;font-size:.82rem}
+      .sc{padding:16px}
+      .qtable th:first-child,.qtable td:first-child{display:none}
+    }
+    @media(max-width:480px){
+      .stats-row{grid-template-columns:1fr}
+      .login-card{padding:36px 24px}
+      .tabs{width:100%}
+      .tab-btn{flex:1;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <div class="nav-inner">
+    <div style="display:flex;align-items:center">
+      <a href="./index.html" class="logo">G-Cours</a>
+      <span class="nav-badge">Admin</span>
+    </div>
+    <a href="./index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour au site
+    </a>
+  </div>
+</nav>
+
+<!-- ══ LOGIN ══ -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo-wrap">
+      <span class="login-logo">G-Cours</span>
+      <span class="login-chip">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Espace Administration
+      </span>
+    </div>
+    <div class="login-title">Connexion</div>
+    <div class="login-sub">Accès réservé au professeur</div>
+
+    <div class="login-error" id="loginError" role="alert">
+      Identifiants incorrects. Veuillez réessayer.
+    </div>
+
+    <div class="field">
+      <label for="usernameInput">Email</label>
+      <input id="usernameInput" type="email" placeholder="adresse@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="field">
+      <label for="passwordInput">Mot de passe</label>
+      <input id="passwordInput" type="password" placeholder="••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Se connecter</button>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div class="dashboard" id="dashboard">
+
+  <!-- Sub-header -->
+  <div class="dash-bar">
+    <div class="dash-bar-inner">
+      <div class="dash-title">Tableau de bord <span>G-Cours</span></div>
+      <button class="logout-btn" onclick="doLogout()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Déconnexion
+      </button>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-val" id="statStudents">–</span>
+        <span class="stat-label">Élèves inscrits (total)</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val" id="statAvis">–</span>
+        <span class="stat-label">Avis reçus</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val" id="statScores">–</span>
+        <span class="stat-label">Scores QCM</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-wrap">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" onclick="showTab('reservations',this)" role="tab" aria-selected="true">
+          Réservations
+        </button>
+        <button class="tab-btn" onclick="showTab('avis',this)" role="tab" aria-selected="false">
+          Avis
+        </button>
+        <button class="tab-btn" onclick="showTab('qcm',this)" role="tab" aria-selected="false">
+          QCM
+        </button>
+      </div>
+    </div>
+
+    <!-- ── TAB : RÉSERVATIONS ── -->
+    <div class="tab-content active" id="tab-reservations">
+
+      <!-- Note calendrier -->
+      <div class="sc">
+        <div class="sc-head">
+          <div class="sc-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Message affiché dans le calendrier
+          </div>
+        </div>
+        <div id="noteSection"><div class="ld"><span class="spinner"></span> Chargement…</div></div>
+      </div>
+
+      <!-- Créneaux -->
+      <div id="slotsContainer">
+        <div class="ld"><span class="spinner"></span> Chargement des créneaux…</div>
+      </div>
+    </div>
+
+    <!-- ── TAB : AVIS ── -->
+    <div class="tab-content" id="tab-avis">
+      <div id="avisContainer">
+        <div class="ld"><span class="spinner"></span> Chargement des avis…</div>
+      </div>
+    </div>
+
+    <!-- ── TAB : QCM ── -->
+    <div class="tab-content" id="tab-qcm">
+      <div class="sc">
+        <div class="sc-head">
+          <div class="sc-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Scores QCM
+          </div>
+          <span class="bc" id="qcmCount">–</span>
+        </div>
+        <div id="qcmContainer">
+          <div class="ld"><span class="spinner"></span> Chargement des scores…</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// ── FIREBASE ──
+firebase.initializeApp({
+  apiKey: "AIzaSyCDJRbeW9KWrLzuI3v2kBUDulKcb3REKy8",
+  authDomain: "reservation-cour.firebaseapp.com",
+  projectId: "reservation-cour",
+  storageBucket: "reservation-cour.firebasestorage.app",
+  messagingSenderId: "156100724990",
+  appId: "1:156100724990:web:c77c49e487d1d519a5fdaf"
+});
+const db   = firebase.firestore();
+const auth = firebase.auth();
+
+// ── AUTH STATE ──
+auth.onAuthStateChanged(user => {
+  if (user) {
+    showDashboard();
+  } else {
+    document.getElementById('loginWrap').style.display = 'flex';
+    document.getElementById('dashboard').classList.remove('visible');
+  }
+});
+
+async function doLogin() {
+  const email = document.getElementById('usernameInput').value.trim();
+  const pass  = document.getElementById('passwordInput').value;
+  const err   = document.getElementById('loginError');
+  const btn   = document.querySelector('.login-btn');
+  if (!email || !pass) return;
+  btn.disabled = true;
+  btn.textContent = 'Connexion…';
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+    err.classList.remove('show');
+  } catch {
+    err.classList.add('show');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Se connecter';
+  }
+}
+
+function doLogout() {
+  auth.signOut();
+}
+
+function showDashboard() {
+  document.getElementById('loginWrap').style.display = 'none';
+  document.getElementById('dashboard').classList.add('visible');
+  initDashboard();
+}
+
+// ── TABS ──
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+}
+
+// ── CONFIG ──
+const DAY_SLOTS = {
+  0:[{label:'9h00 – 11h00',key:'Dimanche_9-11'},{label:'11h00 – 13h00',key:'Dimanche_11-13'}],
+  1:[{label:'17h00 – 19h00',key:'Lundi_17-19'},{label:'19h00 – 21h00',key:'Lundi_19-21'}],
+  2:[{label:'17h00 – 19h00',key:'Mardi_17-19'},{label:'19h00 – 21h00',key:'Mardi_19-21'}],
+  3:[{label:'14h00 – 16h00',key:'Mercredi_14-16'},{label:'16h00 – 17h00',key:'Mercredi_16-17'}],
+  4:[{label:'17h00 – 19h00',key:'Jeudi_17-19'},{label:'19h00 – 21h00',key:'Jeudi_19-21'}],
+};
+const DAY_NAMES = {0:'Dimanche',1:'Lundi',2:'Mardi',3:'Mercredi',4:'Jeudi'};
+const ALL_KEYS = ['Dimanche_9-11','Dimanche_11-13','Lundi_17-19','Lundi_19-21','Mardi_17-19','Mardi_19-21','Mercredi_14-16','Mercredi_16-17','Jeudi_17-19','Jeudi_19-21'];
+const MAX = 7;
+const AVATAR_COLORS = [
+  ['rgba(56,189,248,.13)','#0ea5e9'],['rgba(129,140,248,.13)','#818cf8'],
+  ['rgba(52,211,153,.13)','#059669'],['rgba(251,191,36,.13)','#d97706'],
+  ['rgba(244,63,94,.13)','#e11d48'],
+];
+
+let slotsData = {};
+let noteText = '';
+
+function initDashboard() {
+  ALL_KEYS.forEach(k => slotsData[k] = []);
+  loadSlots();
+  loadNote();
+  loadAvis();
+  loadQCM();
+}
+
+// ── SLOTS ──
+function loadSlots() {
+  db.collection('slots').onSnapshot(snap => {
+    ALL_KEYS.forEach(k => slotsData[k] = []);
+    snap.forEach(doc => {
+      if (ALL_KEYS.includes(doc.id)) {
+        const val = doc.data().students;
+        slotsData[doc.id] = Array.isArray(val) ? val.filter(Boolean) : [];
+      }
+    });
+    const total = ALL_KEYS.reduce((s,k) => s + slotsData[k].length, 0);
+    document.getElementById('statStudents').textContent = total;
+    renderSlots();
+  });
+}
+
+function renderSlots() {
+  const container = document.getElementById('slotsContainer');
+  container.innerHTML = Object.entries(DAY_SLOTS).map(([dow, slots]) => {
+    const slotsHtml = slots.map(({label, key}) => {
+      const students = slotsData[key] || [];
+      const count = students.length;
+      const pct = Math.round(count / MAX * 100);
+      const isFull = count >= MAX;
+      const rows = count === 0
+        ? `<div class="no-s">Aucun élève inscrit</div>`
+        : students.map((s, i) => `
+            <div class="student-row">
+              <div>
+                <div class="student-name">${s.name}</div>
+                <div class="student-sub">${s.subject}</div>
+              </div>
+              <button class="del-btn" onclick="removeStudent('${key}',${i})">Retirer</button>
+            </div>`).join('');
+      return `
+        <div class="slot-block">
+          <div class="slot-head">
+            <span class="slot-title">${label}</span>
+            <span class="${isFull ? 'bf' : 'bc'}">${count}/${MAX}</span>
+          </div>
+          <div class="slot-prog"><div class="slot-prog-fill" style="width:${pct}%"></div></div>
+          ${rows}
+        </div>`;
+    }).join('');
+    return `
+      <div class="sc">
+        <div class="sc-head">
+          <div class="sc-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            ${DAY_NAMES[dow]}
+          </div>
+          <span class="bg">${slots.reduce((s,{key})=>s+(slotsData[key]||[]).length,0)} élève(s)</span>
+        </div>
+        ${slotsHtml}
+      </div>`;
+  }).join('');
+}
+
+async function removeStudent(slotKey, index) {
+  if (!confirm('Retirer cet élève ?')) return;
+  const newList = [...(slotsData[slotKey] || [])];
+  newList.splice(index, 1);
+  await db.collection('slots').doc(slotKey).set({ students: newList });
+}
+
+// ── NOTE ──
+function loadNote() {
+  db.collection('config').doc('note').onSnapshot(snap => {
+    noteText = (snap.exists && snap.data().text) || '';
+    renderNote();
+  });
+}
+
+function renderNote() {
+  document.getElementById('noteSection').innerHTML = `
+    ${noteText ? `
+      <div class="note-banner">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span><strong>Message actuel :</strong> ${noteText}</span>
+      </div>` : `<p style="color:var(--muted);font-size:.84rem;margin-bottom:12px">Aucun message affiché pour le moment.</p>`}
+    <div class="note-area">
+      <textarea id="noteInput" class="note-ta" rows="2" placeholder="Message pour les élèves dans le calendrier…">${noteText}</textarea>
+      <button class="note-save" onclick="saveNote()">Enregistrer</button>
+    </div>`;
+}
+
+async function saveNote() {
+  const text = document.getElementById('noteInput').value.trim();
+  await db.collection('config').doc('note').set({ text: text || '' });
+}
+
+// ── AVIS ──
+function loadAvis() {
+  db.collection('avis').orderBy('date', 'desc').onSnapshot(snap => {
+    const avisData = [];
+    snap.forEach(doc => avisData.push({ _id: doc.id, ...doc.data() }));
+    document.getElementById('statAvis').textContent = avisData.length;
+    renderAvis(avisData);
+  });
+}
+
+function renderAvis(data) {
+  const container = document.getElementById('avisContainer');
+  if (!data.length) {
+    container.innerHTML = `<div class="sc"><div class="ld" style="color:var(--muted)">Aucun avis pour le moment.</div></div>`;
+    return;
+  }
+  const avg = data.reduce((s, r) => s + (r.note || 5), 0) / data.length;
+  container.innerHTML = `
+    <div class="sc">
+      <div class="sc-head">
+        <div class="sc-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Avis reçus
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:.82rem;color:var(--gold);font-weight:700">★ ${avg.toFixed(1)} / 5</span>
+          <span class="bc">${data.length} avis</span>
+        </div>
+      </div>
+      ${data.map(r => {
+        const ci = (r.auteur || '?').charCodeAt(0) % AVATAR_COLORS.length;
+        const [bg, col] = AVATAR_COLORS[ci];
+        const stars = '★'.repeat(r.note || 5) + '☆'.repeat(5 - (r.note || 5));
+        const date = r.date ? new Date(r.date).toLocaleDateString('fr-FR') : '';
+        return `
+          <div class="review-card">
+            <div class="r-head">
+              <div class="r-author">
+                <div class="r-avatar" style="background:${bg};color:${col}">${(r.auteur || '?')[0].toUpperCase()}</div>
+                <div>
+                  <div class="r-name">${r.auteur}</div>
+                  <div class="r-stars">${stars}<span class="r-date">${date}</span></div>
+                </div>
+              </div>
+              <button class="del-btn" onclick="deleteAvis('${r._id}')">Supprimer</button>
+            </div>
+            <div class="r-text">"${r.texte}"</div>
+          </div>`;
+      }).join('')}
+    </div>`;
+}
+
+async function deleteAvis(id) {
+  if (!confirm('Supprimer cet avis définitivement ?')) return;
+  await db.collection('avis').doc(id).delete();
+}
+
+// ── QCM ──
+function loadQCM() {
+  db.collection('qcmScores').orderBy('date', 'desc').onSnapshot(snap => {
+    const data = [];
+    snap.forEach(doc => data.push({ _id: doc.id, ...doc.data() }));
+    document.getElementById('statScores').textContent = data.length;
+    document.getElementById('qcmCount').textContent = data.length + ' scores';
+    renderQCM(data);
+  });
+}
+
+function renderQCM(data) {
+  const container = document.getElementById('qcmContainer');
+  if (!data.length) {
+    container.innerHTML = `<div class="ld" style="color:var(--muted)">Aucun score enregistré.</div>`;
+    return;
+  }
+  container.innerHTML = `
+    <table class="qtable">
+      <thead><tr>
+        <th>Date</th>
+        <th>Nom</th>
+        <th>Classe</th>
+        <th>Score</th>
+        <th>Résultat</th>
+        <th></th>
+      </tr></thead>
+      <tbody>
+        ${data.map(s => {
+          const pct = Math.round((s.score / s.total) * 100);
+          const dot = pct >= 80 ? '#34d399' : pct >= 50 ? '#fbbf24' : '#f87171';
+          const date = s.date?.seconds ? new Date(s.date.seconds * 1000).toLocaleDateString('fr-FR') : '–';
+          return `<tr>
+            <td>${date}</td>
+            <td>${s.name || '–'}</td>
+            <td>${s.classe || '–'}</td>
+            <td>${s.score}/${s.total}</td>
+            <td><span class="pct-pill"><span class="pct-dot" style="background:${dot}"></span>${pct}%</span></td>
+            <td><button class="del-btn" onclick="deleteScore('${s._id}')">Supprimer</button></td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+}
+
+async function deleteScore(id) {
+  if (!confirm('Supprimer ce résultat ?')) return;
+  await db.collection('qcmScores').doc(id).delete();
+}
+</script>
+</body>
+</html>

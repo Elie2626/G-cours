@@ -476,12 +476,6 @@
           Envoyer mon avis
         </button>
       </form>
-      <div style="margin-top:16px">
-        <button class="admin-btn" onclick="openAdmin()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:5px" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Accès Professeur
-        </button>
-      </div>
     </div>
   </section>
 
@@ -560,8 +554,6 @@ const db = firebase.firestore();
 const reviewsRef = db.collection('avis');
 
 let starNote = 5;
-const ADMIN_PASSWORD = atob('MjgwNQ==');
-let isAdmin = false;
 let allReviews = [];
 
 const AVATAR_COLORS = [
@@ -606,7 +598,7 @@ function makeCard(r) {
         <div class="testi-stars" aria-label="${r.note||5} étoiles sur 5">${stars}</div>
       </div>
     </div>
-    ${isAdmin ? `<button class="del-btn" onclick="deleteAvis('${r._id}')">Supprimer</button>` : ''}`;
+    `;
   return div;
 }
 
@@ -650,12 +642,6 @@ window.deleteAvis = async id => {
   if (confirm('Supprimer cet avis ?')) await reviewsRef.doc(id).delete();
 };
 
-window.openAdmin = () => {
-  if (prompt('Mot de passe professeur') === ADMIN_PASSWORD) {
-    isAdmin = true;
-    renderTestimonials();
-  }
-};
 </script>
 <div id="mouse-gradient" aria-hidden="true"></div>
 <script src="./digital-serenity.js"></script>

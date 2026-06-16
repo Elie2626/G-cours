@@ -412,22 +412,6 @@
       <span id="noteText" class="gc-note-banner-text"></span>
     </div>
 
-    <div id="noteEditBox" style="display:none" class="gc-note-edit-box">
-      <textarea id="noteTextarea" class="gc-note-textarea" rows="3" placeholder="Message pour les élèves…"></textarea>
-      <div class="gc-note-btns">
-        <button class="gc-note-save" onclick="saveNote()">Enregistrer</button>
-        <button class="gc-note-cancel" onclick="cancelNoteEdit()">Annuler</button>
-      </div>
-    </div>
-
-    <div class="gc-divider"></div>
-
-    <div class="gc-footer" id="gcFooter">
-      <button class="gc-note" onclick="openNoteEdit()" id="noteBtn" aria-label="Ajouter une note">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        <span id="noteBtnLabel">Ajouter une note…</span>
-      </button>
-    </div>
   </div>
 
   <!-- ══ RIGHT COLUMN ══ -->
@@ -484,10 +468,6 @@
     <div id="messageBox" style="display:none"></div>
   </div>
 
-  <!-- Admin (spans both columns) -->
-  <div class="admin-wrap">
-    <div id="adminPanel"></div>
-  </div>
 
 </main>
 
@@ -575,8 +555,6 @@ const DAY_SLOTS = {
 const COURSE_DAYS = new Set([0,1,2,3,4]);
 const ALL_SLOT_KEYS = ['Dimanche_9-11','Dimanche_11-13','Lundi_17-19','Lundi_19-21','Mardi_17-19','Mardi_19-21','Mercredi_14-16','Mercredi_16-17','Jeudi_17-19','Jeudi_19-21'];
 const MAX = 7;
-const ADMIN_PASSWORD = atob('MjgwNQ==');
-
 let data = {};
 ALL_SLOT_KEYS.forEach(k => data[k] = []);
 let currentNote = '';
@@ -597,7 +575,6 @@ noteDoc.onSnapshot(snap => {
 let today = new Date(); today.setHours(0,0,0,0);
 let selectedDate    = new Date(today);
 let currentMonth    = new Date(today.getFullYear(), today.getMonth(), 1);
-let isAdmin         = false;
 let bookingSlot     = null;
 let adminSelectedDate  = new Date(today);
 let adminCurrentMonth  = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -615,7 +592,6 @@ slotsCol.onSnapshot((snapshot) => {
   document.getElementById('loadingOverlay').style.display = 'none';
   renderCalendar();
   renderSlots();
-  if (isAdmin) { renderAdminFull(); }
 });
 
 function sameDay(a,b){ return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
@@ -742,120 +718,9 @@ async function reserve(key, label) {
   }
 }
 
-// ── Note ──
-function openNoteEdit() {
-  const pass = prompt('Mot de passe professeur');
-  if (pass !== ADMIN_PASSWORD) { if (pass !== null) alert('Mot de passe incorrect'); return; }
-  document.getElementById('noteTextarea').value = currentNote;
-  document.getElementById('noteEditBox').style.display = 'block';
-  document.getElementById('gcFooter').style.display = 'none';
-  document.getElementById('noteDisplay').style.display = 'none';
-  document.getElementById('noteTextarea').focus();
-}
-
-async function saveNote() {
-  const text = document.getElementById('noteTextarea').value.trim();
-  await noteDoc.set({ text: text || '' });
-  cancelNoteEdit();
-}
-
-function cancelNoteEdit() {
-  document.getElementById('noteEditBox').style.display = 'none';
-  document.getElementById('gcFooter').style.display = 'flex';
-}
-
 // ── Admin ──
 function openAdmin() {
-  const pass = prompt('Mot de passe professeur');
-  if (pass !== ADMIN_PASSWORD) { alert('Mot de passe incorrect'); return; }
-  isAdmin = true;
-  document.getElementById('adminPanel').innerHTML = `
-    <div class="admin-panel">
-      <div class="admin-title-row">
-        <div style="display:flex;align-items:center;gap:10px">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--purple)" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span class="admin-title">Espace Professeur</span>
-        </div>
-        <button class="admin-close-btn" onclick="closeAdmin()">Fermer</button>
-      </div>
-      <div class="admin-stats-grid" id="adminStats"></div>
-      <div id="adminSlotsFull"></div>
-    </div>`;
-  renderAdminFull();
-}
-
-function closeAdmin() {
-  isAdmin = false;
-  document.getElementById('adminPanel').innerHTML = '';
-}
-
-function renderAdminFull() {
-  const statsEl = document.getElementById('adminStats');
-  if (!statsEl) return;
-
-  const totalStudents = ALL_SLOT_KEYS.reduce((sum, k) => sum + (data[k]||[]).length, 0);
-  const totalPlaces   = ALL_SLOT_KEYS.length * MAX;
-  const fullSlots     = ALL_SLOT_KEYS.filter(k => (data[k]||[]).length >= MAX).length;
-  const fillPct       = Math.round(totalStudents / totalPlaces * 100);
-
-  statsEl.innerHTML = `
-    <div class="admin-stat-card">
-      <div class="admin-stat-val" style="color:var(--accent)">${totalStudents}</div>
-      <div class="admin-stat-label">Inscrits au total</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="admin-stat-val" style="color:var(--purple)">${fillPct}%</div>
-      <div class="admin-stat-label">Remplissage</div>
-    </div>
-    <div class="admin-stat-card">
-      <div class="admin-stat-val" style="color:var(--green)">${fullSlots}</div>
-      <div class="admin-stat-label">Créneaux complets</div>
-    </div>`;
-
-  const fullEl = document.getElementById('adminSlotsFull');
-  if (!fullEl) return;
-
-  const DAY_NAMES = {0:'Dimanche', 1:'Lundi', 2:'Mardi', 3:'Mercredi', 4:'Jeudi'};
-  fullEl.innerHTML = Object.entries(DAY_SLOTS).map(([dow, slots]) => {
-    const slotsHtml = slots.map(({label, key}) => {
-      const students = data[key] || [];
-      const count    = students.length;
-      const isFull   = count >= MAX;
-      const pct      = Math.round(count / MAX * 100);
-      const badgeClass = isFull ? 'full' : (count > 0 ? 'has-p' : '');
-      const rows = count === 0
-        ? '<div class="admin-empty">Aucun élève inscrit</div>'
-        : students.map((s, i) => `
-            <div class="student-row">
-              <div>
-                <strong>${s.name}</strong>
-                <span style="font-size:.78rem;color:var(--accent);margin-left:6px">(${s.subject})</span>
-              </div>
-              <button class="remove-btn" onclick="removeStudent('${key}',${i})">Retirer</button>
-            </div>`).join('');
-      return `
-        <div class="admin-slot-block">
-          <div class="admin-slot-title">
-            <span>${label}</span>
-            <span class="admin-slot-badge ${badgeClass}">${count}/${MAX}</span>
-          </div>
-          <div class="admin-slot-prog"><div class="admin-slot-prog-fill" style="width:${pct}%"></div></div>
-          ${rows}
-        </div>`;
-    }).join('');
-    return `
-      <div class="admin-day-section">
-        <div class="admin-day-header">${DAY_NAMES[dow]}</div>
-        ${slotsHtml}
-      </div>`;
-  }).join('');
-}
-
-async function removeStudent(slotKey, index){
-  if (!confirm('Supprimer cet élève ?')) return;
-  const newList = [...(data[slotKey]||[])];
-  newList.splice(index, 1);
-  await slotsCol.doc(slotKey).set({ students: newList });
+  window.location.href = './admin.html';
 }
 </script>
 

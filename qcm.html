@@ -678,25 +678,8 @@ window.deleteScore = async function (id) {
 };
 
 // ── PROF PANEL ──
-window.openProf = async function () {
-  if (prompt("Mot de passe professeur") !== atob("MjgwNQ==")) return alert("Accès refusé");
-  const snap = await getDocs(collection(db, "qcmScores"));
-  const panel = document.getElementById("profPanel");
-  if (snap.empty) { panel.innerHTML = "<p style='color:var(--muted);margin-top:12px;font-size:.88rem'>Aucun résultat enregistré.</p>"; return; }
-  let html = `<table class="scores-table" style="margin-top:16px"><thead><tr><th>Date</th><th>Nom</th><th>Classe</th><th>Score</th><th>%</th><th></th></tr></thead><tbody>`;
-  snap.forEach(d => {
-    const s = d.data();
-    html += `<tr>
-      <td>${new Date(s.date.seconds * 1000).toLocaleDateString("fr-FR")}</td>
-      <td>${s.name}</td>
-      <td>${s.classe}</td>
-      <td>${s.score}/${s.total}</td>
-      <td>${Math.round((s.score / s.total) * 100)}%</td>
-      <td><button class="del-btn" onclick="deleteScore('${d.id}')">Supprimer</button></td>
-    </tr>`;
-  });
-  html += "</tbody></table>";
-  panel.innerHTML = html;
+window.openProf = function () {
+  window.location.href = './admin.html';
 };
 </script>
 <div id="mouse-gradient" aria-hidden="true"></div>
