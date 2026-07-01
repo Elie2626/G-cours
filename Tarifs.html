@@ -74,7 +74,7 @@
     .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 
     .price-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;transition:border-color .3s,box-shadow .3s,transform .15s ease-out;position:relative;overflow:hidden;will-change:transform;display:flex;flex-direction:column}
-    .price-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 40% 0%,rgba(56,189,248,.07),transparent 65%);opacity:0;transition:opacity .3s}
+    .price-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 40% 0%,rgba(56,189,248,.07),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none}
     .price-card:hover{border-color:var(--border-h);box-shadow:0 24px 56px rgba(0,0,0,.45),0 0 0 1px rgba(56,189,248,.08)}
     .price-card:hover::after{opacity:1}
     .price-card.featured{border-color:rgba(56,189,248,.3);background:linear-gradient(160deg,rgba(56,189,248,.07),rgba(129,140,248,.05))}
