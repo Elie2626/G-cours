@@ -321,37 +321,33 @@
     </article>
 
     <!-- APPLICATION -->
-    <article class="price-card price-card-wide" style="border-color:rgba(52,211,153,.25);background:linear-gradient(160deg,rgba(52,211,153,.05),rgba(56,189,248,.04))">
-      <div class="app-header">
-        <div class="pc-icon ic-g" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/><circle cx="12" cy="18.5" r=".8" fill="currentColor" stroke="none"/></svg>
-        </div>
-        <h2 class="pc-title">Application G-Cours</h2>
-        <p class="pc-desc">Maths, physique et anglais — entraînement illimité et suivi personnalisé par le professeur, depuis votre téléphone</p>
+    <article class="price-card" style="border-color:rgba(52,211,153,.25);background:linear-gradient(160deg,rgba(52,211,153,.05),rgba(56,189,248,.04))">
+      <div class="pc-icon ic-g" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/><circle cx="12" cy="18.5" r=".8" fill="currentColor" stroke="none"/></svg>
       </div>
+      <h2 class="pc-title">Application G-Cours</h2>
+      <p class="pc-desc">Maths, physique et anglais — exercices illimités et suivi personnalisé par le professeur</p>
 
-      <div class="app-prices">
+      <!-- Double prix côte à côte -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
         <div class="price-tag" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2)">
-          <div class="price-big" style="background:linear-gradient(135deg,#34d399,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:2.2rem">Gratuit</div>
-          <div class="price-label" style="margin-top:6px">élèves en cours présentiel</div>
+          <div style="font-size:1.6rem;font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,#34d399,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Gratuit</div>
+          <div class="price-label">élèves en présentiel</div>
         </div>
         <div class="price-tag">
-          <div class="price-big" style="font-size:2.2rem">20€<span class="price-unit"> /mois</span></div>
-          <div class="price-label" style="margin-top:6px">abonnement seul</div>
+          <div style="font-size:1.6rem;font-weight:900;letter-spacing:-1px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">20€<span style="font-size:.9rem;font-weight:500;color:var(--muted);-webkit-text-fill-color:var(--muted)">/mois</span></div>
+          <div class="price-label">abonnement seul</div>
         </div>
       </div>
 
-      <div class="app-features">
-        <ul class="feat-list" style="margin-bottom:24px">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Exercices illimités (maths, physique, anglais)</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Suivi de progression par le professeur</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Exercices personnalisés selon ton niveau</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Statistiques de résultats</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Accès depuis mobile &amp; tablette</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Gratuit pour tout élève en cours présentiel</li>
-        </ul>
-        <a href="./app.html" class="btn btn-p" style="background:linear-gradient(135deg,#34d399,#38bdf8);align-self:flex-start">Accéder à l'application</a>
-      </div>
+      <ul class="feat-list">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Exercices illimités en maths, physique, anglais</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Suivi de progression par le professeur</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Exercices personnalisés selon ton niveau</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Statistiques de résultats</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Accès mobile &amp; tablette</li>
+      </ul>
+      <a href="./app.html" class="btn btn-p" style="background:linear-gradient(135deg,#34d399,#38bdf8)">Accéder à l'application</a>
     </article>
   </div>
 
