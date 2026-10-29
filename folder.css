@@ -1,0 +1,55 @@
+/* Glass Folder — version HTML/CSS du composant 21st.dev, palette bleu marine */
+.gf{--px:0;--py:0;--ease:cubic-bezier(.2,.8,.2,1);--spring:cubic-bezier(.34,1.36,.5,1);
+  --hinge:0deg;--lift:42px;--spread:0px;--fan:0deg;--stack:15px;
+  position:relative;width:340px;height:326px;flex:none;isolation:isolate;-webkit-tap-highlight-color:transparent}
+.gf:hover,.gf:focus-within{--hinge:-11deg;--lift:-34px;--spread:8px;--fan:1.4deg;--stack:10px}
+.gf[data-open]{--hinge:-24deg;--lift:-96px;--spread:40px;--fan:5deg;--stack:30px}
+.gf-stage{position:absolute;left:0;top:54px;width:340px;height:272px}
+.gf-tilt{position:absolute;inset:0;transform:perspective(1400px) rotateX(calc(var(--py)*-3deg)) rotateY(calc(var(--px)*4deg));transition:transform .9s var(--ease)}
+.gf-shadow{position:absolute;left:18px;right:18px;bottom:-6px;height:60px;border-radius:40px;background:rgba(11,31,77,.35);filter:blur(22px)}
+.gf-back{position:absolute;inset:0;overflow:hidden;clip-path:path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z')}
+.gf-art{position:absolute;inset:-14px;background:var(--art);background-size:180% 180%;animation:gf-flow 14s ease-in-out infinite;transform:translate(calc(var(--px)*-7px),calc(var(--py)*-6px))}
+@keyframes gf-flow{50%{background-position:100% 60%}}
+.gf-files{position:absolute;inset:0;z-index:5;pointer-events:none;clip-path:inset(-400px -400px 10px -400px)}
+.gf-sheet{position:absolute;left:34px;top:96px;width:272px;height:184px;border-radius:16px;overflow:hidden;text-decoration:none;color:#0b1f4d;
+  background:linear-gradient(180deg,#fff,#f1f4fa);box-shadow:inset 0 1px 0 #fff,0 0 0 .5px rgba(11,31,77,.12),0 10px 26px -8px rgba(11,31,77,.3);
+  transform-origin:50% 100%;
+  transform:translate(calc(var(--slot)*var(--spread)),calc(var(--lift) + var(--depth)*var(--stack)*-1)) rotate(calc(var(--slot)*var(--fan)));
+  transition:transform .75s var(--spring) calc(var(--depth)*40ms),box-shadow .4s var(--ease)}
+.gf[data-open] .gf-files{pointer-events:auto}
+.gf[data-open] .gf-sheet:hover,.gf[data-open] .gf-sheet:focus-visible{transform:translate(calc(var(--slot)*var(--spread)),calc(var(--lift) + var(--depth)*var(--stack)*-1 - 18px)) rotate(calc(var(--slot)*var(--fan)*.6));transition-delay:0s;box-shadow:0 22px 40px -12px rgba(11,31,77,.45)}
+.gf-head{position:absolute;left:14px;right:14px;top:11px;display:flex;justify-content:space-between;gap:10px;font-size:12.5px;font-weight:600}
+.gf-head small{font:500 10px ui-monospace,'SF Mono',Menlo,monospace;color:rgba(11,31,77,.5)}
+.gf-lines{position:absolute;left:14px;right:14px;top:40px;display:flex;flex-direction:column;gap:9px}
+.gf-lines i{height:5px;border-radius:3px;background:rgba(11,31,77,.08)}
+.gf-lines i:first-child{height:9px;margin-bottom:4px;background:rgba(29,78,216,.18);width:60%}
+.gf-front{position:absolute;left:0;top:74px;width:340px;height:198px;z-index:10;
+  clip-path:path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');
+  -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
+  transform-origin:50% 100%;transform:perspective(760px) rotateX(var(--hinge));transition:transform .8s var(--spring)}
+.gf-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.5) 42%,rgba(252,252,252,.93))}
+.gf-spec{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;background:radial-gradient(260px 200px at calc(50% + var(--px)*46%) calc(30% + var(--py)*40%),rgba(255,255,255,.55),transparent 70%)}
+.gf-rim{position:absolute;inset:0;width:340px;height:198px;fill:none;pointer-events:none}
+.gf-rim path{stroke:rgba(255,255,255,.9);stroke-width:2.4}
+.gf-hit{position:absolute;inset:0;z-index:1;background:none;border:none;cursor:pointer;width:100%}
+.gf-hit:focus-visible{outline:none}
+.gf-front:has(.gf-hit:focus-visible) .gf-rim path{stroke:#1d4ed8;stroke-width:4}
+.gf-label{position:absolute;left:28px;bottom:30px;z-index:2;pointer-events:none;color:#0b1f4d;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+.gf-title{font-size:20px;font-weight:600;letter-spacing:-.015em}
+.gf-meta{font:500 12px ui-monospace,'SF Mono',Menlo,monospace;color:rgba(11,31,77,.55);letter-spacing:.03em}
+.gf-key{position:absolute;right:22px;bottom:22px;z-index:12;width:54px;height:54px;border-radius:17px;display:grid;place-items:center;color:#fff;text-decoration:none;
+  background:radial-gradient(120% 90% at 50% 0%,#2a4a9a,#0b1f4d 60%,#06122e);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 14px 22px -8px rgba(11,31,77,.6);transition:transform .35s var(--spring)}
+.gf-key:hover{transform:translateY(-2px)}
+.gf-key:active{transform:scale(.93)}
+/* entrée */
+.gf:not([data-entered]) .gf-back{translate:0 22px;opacity:0}
+.gf:not([data-entered]) .gf-sheet{translate:0 -120px;opacity:0}
+.gf:not([data-entered]) .gf-front{translate:0 46px;opacity:0}
+.gf:not([data-entered]) .gf-key,.gf:not([data-entered]) .gf-shadow{opacity:0}
+.gf-back{transition:translate 1s var(--ease),opacity .9s var(--ease)}
+.gf-sheet{transition-property:transform,box-shadow,translate,opacity}
+.gf[data-entered] .gf-sheet{transition-duration:.75s,.4s,.9s,.9s;transition-delay:calc(var(--depth)*40ms),0s,calc(.18s + var(--depth)*90ms),calc(.18s + var(--depth)*90ms)}
+.gf-front{transition:transform .8s var(--spring),translate 1s var(--ease) .42s,opacity 1s var(--ease) .42s}
+.gf-key{transition:transform .35s var(--spring),opacity .6s var(--ease) .7s}
+@media(max-width:380px){.gf{transform:scale(.88);transform-origin:top center;margin-bottom:-38px}}
+@media(prefers-reduced-motion:reduce){.gf *{transition:none!important;animation:none!important}.gf-tilt{transform:none}}
