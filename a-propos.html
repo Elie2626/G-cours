@@ -51,6 +51,24 @@
 .star-btn:hover{transform:scale(1.15)}
 @media(max-width:900px){.story,.map{grid-template-columns:1fr}.cols{grid-template-columns:1fr;height:520px}.cols>div:nth-child(n+2){display:none}}
 
+.band{display:grid;grid-template-columns:repeat(4,1fr);background:#0b1f4d;color:#fff;border-radius:28px;padding:40px 16px;text-align:center;position:relative;overflow:hidden}
+.band::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 220px at 50% 0%,rgba(59,130,246,.35),transparent 70%)}
+.band>div{position:relative}
+.band>div+div{border-left:1px solid rgba(255,255,255,.14)}
+.band strong{display:block;font-size:clamp(2rem,4.6vw,3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+.band p{color:rgba(255,255,255,.7);margin-top:8px;font-size:.95rem}
+.eng{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.eng b{display:block;font-size:.85rem;color:var(--primary);letter-spacing:.1em;margin-bottom:12px;padding-bottom:12px;border-bottom:2px solid #0b1f4d}
+.eng h3{font-size:1.2rem;margin-bottom:6px}
+.eng p{color:var(--muted)}
+.tl{list-style:none;max-width:680px;margin:36px auto 0;text-align:left;position:relative}
+.tl::before{content:'';position:absolute;left:21px;top:20px;bottom:20px;width:2px;background:linear-gradient(#0b1f4d,#93c5fd)}
+.tl li{display:flex;gap:22px;padding:14px 0;position:relative}
+.tl span{flex:none;width:44px;height:44px;border-radius:50%;background:#0b1f4d;color:#fff;display:grid;place-items:center;font-weight:800;box-shadow:0 0 0 6px #fff}
+.tl h3{font-size:1.2rem;margin:8px 0 4px}
+.tl p{color:var(--muted)}
+@media(max-width:900px){.band{grid-template-columns:repeat(2,1fr);row-gap:28px}.band>div:nth-child(3){border-left:none}.eng{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.eng{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -85,7 +103,7 @@
   <div class="dots" aria-hidden="true"></div>
   <p class="eyebrow rev">À propos</p>
   <h1 class="rev">Qui sommes-<span class="navy">nous ?</span></h1>
-  <p class="rev">Plus de 20 ans au service de la réussite des élèves à Lyon.</p>
+  <p class="rev">Depuis plus de 20 ans, on aide les collégiens et lycéens de Lyon à reprendre confiance et à progresser.</p>
 </header>
 
 <section class="sec" style="padding-top:20px" aria-labelledby="t-story">
@@ -100,6 +118,31 @@
 </section>
 
 <section style="padding:0 0 64px">
+  <div class="wrap">
+    <div class="band rev">
+      <div><strong>20 ans</strong><p>d'enseignement</p></div>
+      <div><strong>98 %</strong><p>d'élèves satisfaits</p></div>
+      <div><strong>+2,5</strong><p>points de moyenne</p></div>
+      <div><strong>1 000+</strong><p>heures de cours</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 72px" aria-labelledby="t-eng">
+  <div class="wrap center">
+    <h2 class="h2 rev" id="t-eng">Nos engagements envers vous.</h2>
+    <p class="sub rev" style="margin-bottom:40px">Ce que chaque famille peut attendre de G-Cours, noir sur blanc.</p>
+    <div class="eng" style="text-align:left">
+      <div class="rev"><b>01</b><h3>Un bilan offert</h3><p>Le premier cours commence par un diagnostic gratuit pour fixer des objectifs clairs.</p></div>
+      <div class="rev"><b>02</b><h3>Aucun engagement</h3><p>Pas de forfait imposé, pas de paiement en ligne. Vous réglez après le cours.</p></div>
+      <div class="rev"><b>03</b><h3>Des parents informés</h3><p>Un bilan régulier sur les acquis et les points à travailler.</p></div>
+      <div class="rev"><b>04</b><h3>Un prof joignable</h3><p>Par téléphone ou WhatsApp, avec une réponse sous 24h.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 64px" aria-labelledby="t-meth">
+  <div class="wrap center"><h2 class="h2 rev" id="t-meth" style="margin-bottom:36px">Notre façon d'enseigner.</h2></div>
   <div class="wrap grid2">
     <div class="panel card spot rev" style="border:none;box-shadow:none;background:var(--surface-2)"><h3>Méthode pédagogique</h3><p>Comprendre plutôt que mémoriser. Chaque notion est expliquée avec des exemples concrets adaptés au niveau.</p></div>
     <div class="panel card spot rev" style="border:none;box-shadow:none;background:var(--surface-2)"><h3>Individuel &amp; petits groupes</h3><p>Pour progresser vite, tout en profitant de l'entraide entre élèves.</p></div>
@@ -126,6 +169,19 @@
   </div>
 </section>
 
+
+<section style="padding:0 0 72px" aria-labelledby="t-first">
+  <div class="wrap center">
+    <h2 class="h2 rev" id="t-first">Votre premier cours, étape par étape.</h2>
+    <ol class="tl rev">
+      <li><span>1</span><div><h3>Vous réservez en ligne</h3><p>Un créneau en 30 secondes, sans créer de compte.</p></div></li>
+      <li><span>2</span><div><h3>On fait le point</h3><p>Bilan du niveau, des difficultés et des objectifs de l'élève.</p></div></li>
+      <li><span>3</span><div><h3>On travaille, concrètement</h3><p>Exercices adaptés et méthodes claires dès la première séance.</p></div></li>
+      <li><span>4</span><div><h3>Vous décidez de la suite</h3><p>Aucune obligation. On continue seulement si ça vous convient.</p></div></li>
+    </ol>
+  </div>
+</section>
+
 <section style="padding:0 0 64px" aria-labelledby="t-rev">
   <div class="wrap center">
     <h2 class="h2 rev" id="t-rev">Ce qu'en disent les élèves.</h2>
@@ -134,19 +190,13 @@
 
     <a href="https://www.google.com/search?q=G-Cours+Lyon+avis" target="_blank" rel="noopener noreferrer" class="btn btn-p rev" style="margin-top:40px"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#fff" opacity=".8" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#fff" opacity=".6" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2z"/><path fill="#fff" opacity=".9" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10C7.2 7.7 9.4 6 12 6z"/></svg>Donner votre avis sur Google</a>
 
-    <form id="avisForm" class="panel avis-form rev" novalidate>
-      <h3 style="margin-bottom:20px">Laisser un avis</h3>
-      <div class="field"><label for="auteur">Votre prénom <span class="req">*</span></label><input id="auteur" type="text" placeholder="Ex : Sophie" required autocomplete="given-name"></div>
-      <div class="field"><label for="texte">Votre avis <span class="req">*</span></label><textarea id="texte" rows="4" placeholder="Partagez votre expérience…" required></textarea></div>
-      <div class="field"><span style="font-size:.9rem;font-weight:600">Votre note <span class="req">*</span></span>
-        <div class="star-row" role="group" aria-label="Choisir une note">
-          <button type="button" class="star-btn active" data-n="1" aria-label="1 étoile">★</button><button type="button" class="star-btn active" data-n="2" aria-label="2 étoiles">★</button><button type="button" class="star-btn active" data-n="3" aria-label="3 étoiles">★</button><button type="button" class="star-btn active" data-n="4" aria-label="4 étoiles">★</button><button type="button" class="star-btn active" data-n="5" aria-label="5 étoiles">★</button>
-        </div></div>
-      <div class="msg err" id="avisErr" role="alert">Merci d'indiquer votre prénom et votre avis.</div>
-      <div class="msg ok" id="avisOk" role="status">Merci pour votre avis !</div>
-      <button type="submit" class="btn btn-p" style="width:100%">Envoyer mon avis</button>
-    </form>
+
   </div>
+</section>
+<section class="cta-band" style="padding-top:0">
+  <h2 class="rev">On commence quand vous voulez.</h2>
+  <p class="rev">Premier cours avec bilan offert, à Lyon.</p>
+  <div class="row rev"><a href="./reservation.html" class="btn btn-p">Réserver le bilan offert</a><a href="https://wa.me/33619336183" class="link" target="_blank" rel="noopener noreferrer">Poser une question sur WhatsApp ›</a></div>
 </section>
 </main>
 
@@ -183,12 +233,9 @@ firebase.initializeApp({
   appId: "1:156100724990:web:c77c49e487d1d519a5fdaf"
 });
 const reviewsRef = firebase.firestore().collection('avis');
-let starNote = 5, allReviews = [];
+let allReviews = [];
 
-document.querySelectorAll('.star-btn').forEach(b => b.addEventListener('click', () => {
-  starNote = +b.dataset.n;
-  document.querySelectorAll('.star-btn').forEach((s, i) => s.classList.toggle('active', i < starNote));
-}));
+
 
 reviewsRef.orderBy('date', 'desc').onSnapshot(snap => {
   allReviews = [];
@@ -227,19 +274,7 @@ function render() {
   });
 }
 
-document.getElementById('avisForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const auteur = document.getElementById('auteur').value.trim(), texte = document.getElementById('texte').value.trim();
-  const err = document.getElementById('avisErr'), ok = document.getElementById('avisOk');
-  err.classList.remove('show'); ok.classList.remove('show');
-  if (!auteur || !texte) { err.classList.add('show'); return; }
-  const btn = e.target.querySelector('button[type=submit]'); btn.disabled = true;
-  try {
-    await reviewsRef.add({ auteur, texte, note: starNote, date: new Date().toISOString() });
-    e.target.reset(); ok.classList.add('show');
-  } catch { err.textContent = "L'envoi a échoué, réessayez."; err.classList.add('show'); }
-  finally { btn.disabled = false; }
-});
+
 </script>
 </body>
 </html>
