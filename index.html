@@ -19,7 +19,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./gc.css">
 <link rel="stylesheet" href="./folder.css">
 <style>
@@ -27,9 +27,9 @@
 .hero{position:relative;padding:calc(var(--nav-h) + 60px) 0 40px;text-align:center;overflow:hidden}
 .hero .eyebrow{font-size:1.15rem;font-weight:600;color:var(--primary);margin-bottom:6px}
 .logo-write{display:block;width:min(92vw,980px);height:auto;margin:0 auto}
-.logo-write text{font:800 200px -apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',sans-serif;letter-spacing:-6px}
-.lw-stroke{fill:transparent;stroke:#0b1f4d;stroke-width:2;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s cubic-bezier(.6,0,.2,1) .2s forwards}
-.lw-fill{fill:url(#navy);opacity:0;animation:fillin 1s ease 2s forwards}
+.logo-write text{font:400 210px 'Great Vibes',cursive}
+.lw-stroke{fill:transparent;stroke:#0b1f4d;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:2600;stroke-dashoffset:2600;animation:draw 3.2s cubic-bezier(.55,0,.25,1) .3s forwards}
+.lw-fill{fill:url(#navy);opacity:0;animation:fillin 1.2s ease 2.8s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fillin{to{opacity:1}}
 #navy stop{animation:none}
@@ -119,7 +119,7 @@
       <li><a href="./index.html" class="on">Accueil</a></li>
       <li><a href="./a-propos.html">À propos</a></li>
       <li><a href="./Tarifs.html">Tarifs</a></li>
-      <li><a href="./app.html">App</a></li>
+      
       <li><a href="./contact.html">Contact</a></li>
       <li><a href="./reservation.html" class="cta">Réserver</a></li>
     </ul>
@@ -133,7 +133,6 @@
   <a href="./reservation.html">Réservation</a>
   <a href="./a-propos.html">À propos</a>
   <a href="./Tarifs.html">Tarifs</a>
-  <a href="./app.html">App</a>
   <a href="./contact.html">Contact</a>
 </nav>
 
@@ -142,15 +141,15 @@
   <div class="wrap">
     <p class="eyebrow rev">Cours particuliers · Lyon</p>
     <h1 style="margin:0">
-      <svg class="logo-write" viewBox="0 0 1000 230" role="img" aria-label="G-Cours">
+      <svg class="logo-write" viewBox="0 0 1000 260" role="img" aria-label="G-Cours">
         <defs>
           <linearGradient id="navy" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#0b1f4d"/><stop offset=".45" stop-color="#1d4ed8"/><stop offset=".55" stop-color="#60a5fa"/><stop offset="1" stop-color="#0b1f4d"/>
             <animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0" dur="5s" begin="3s" repeatCount="indefinite"/>
           </linearGradient>
         </defs>
-        <text class="lw-fill" x="500" y="190" text-anchor="middle">G-COURS</text>
-        <text class="lw-stroke" x="500" y="190" text-anchor="middle">G-COURS</text>
+        <text class="lw-fill" x="500" y="195" text-anchor="middle">G-Cours</text>
+        <text class="lw-stroke" x="500" y="195" text-anchor="middle">G-Cours</text>
       </svg>
     </h1>
     <p class="lead rev">Les maths, la physique et l'anglais. Enfin clairs.</p>
@@ -246,9 +245,9 @@
 <section style="padding:0 0 20px">
   <div class="wrap tiles">
     <div class="tile dark rev">
-      <h3>L'app G-Cours.</h3>
-      <p>Exercices illimités et suivi du prof. Gratuite pour les élèves en présentiel.</p>
-      <a href="./app.html" class="link">Découvrir l'app ›</a>
+      <h3>Réserve en 30 secondes.</h3>
+      <p>Un jour, un créneau, ton nom. Pas de compte, pas de paiement en ligne.</p>
+      <a href="./reservation.html" class="link">Choisir un créneau ›</a>
       <div class="phone" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
     <div class="tile rev">
@@ -268,7 +267,6 @@
       <div class="q"><button type="button" aria-expanded="false">Comment réserver un cours ?<span aria-hidden="true">+</span></button><div class="a"><div><p>Sur la page Réservation : un jour, un créneau, ton nom et ta matière. C'est fait.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">Où ont lieu les cours ?<span aria-hidden="true">+</span></button><div class="a"><div><p>À Lyon (69100), Cours Émile-Zola.</p></div></div></div>
       <div class="q"><button type="button" aria-expanded="false">Combien ça coûte ?<span aria-hidden="true">+</span></button><div class="a"><div><p>À partir de 20 € de l'heure. Tous les détails sont sur la page Tarifs.</p></div></div></div>
-      <div class="q"><button type="button" aria-expanded="false">L'app est-elle gratuite ?<span aria-hidden="true">+</span></button><div class="a"><div><p>Oui pour tous les élèves qui prennent des cours en présentiel. Sinon, 20 €/mois.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -287,7 +285,7 @@
   <div class="wrap">
     <div class="fc">
       <div><a href="./index.html" class="logo"><i>G</i>G-Cours</a><p>Cours particuliers en maths, physique et anglais pour collégiens et lycéens à Lyon.</p></div>
-      <div><h4>Navigation</h4><ul><li><a href="./index.html">Accueil</a></li><li><a href="./reservation.html">Réservation</a></li><li><a href="./a-propos.html">À propos</a></li><li><a href="./Tarifs.html">Tarifs</a></li><li><a href="./app.html">App</a></li><li><a href="./contact.html">Contact</a></li></ul></div>
+      <div><h4>Navigation</h4><ul><li><a href="./index.html">Accueil</a></li><li><a href="./reservation.html">Réservation</a></li><li><a href="./a-propos.html">À propos</a></li><li><a href="./Tarifs.html">Tarifs</a></li><li><a href="./contact.html">Contact</a></li></ul></div>
       <div><h4>Matières</h4><ul><li><span>Mathématiques</span></li><li><span>Physique-Chimie</span></li><li><span>Anglais</span></li></ul></div>
       <div><h4>Contact</h4><ul>
         <li><span>Lyon 69100</span></li>
