@@ -29,8 +29,9 @@
 .who{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;text-align:left}
 .who h3{font-size:1.2rem;margin-bottom:6px}
 .who p{color:var(--muted)}
-.subj{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.subj span{padding:8px 16px;border-radius:999px;background:#fff;font-weight:600;font-size:.92rem}
+.subj-l{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin-bottom:0}
+.subj-l li{font-weight:600}
+@media(max-width:520px){.subj-l{grid-template-columns:1fr}}
 .faq{max-width:760px;margin:30px auto 0;text-align:left}
 .q{border-bottom:1px solid var(--line)}
 .q button{width:100%;text-align:left;background:none;border:none;color:var(--ink);font-family:inherit;font-size:1.1rem;font-weight:600;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;gap:16px;min-height:48px}
@@ -94,7 +95,7 @@
 
 <section style="padding:0 0 64px">
   <div class="wrap svc">
-    <div class="panel rev"><h3>Ce qu'on travaille</h3><p>Un programme construit à partir du bilan, au rythme de l'élève.</p><div class="subj"><span>Réunions</span><span>Entretiens</span><span>E-mails</span><span>Présentations</span><span>Vocabulaire métier</span><span>Négociation</span></div></div>
+    <div class="panel rev"><h3>Ce qu'on travaille</h3><p>Un programme construit à partir du bilan, au rythme de l'élève.</p><ul class="checks subj-l"><li>Réunions</li><li>Entretiens</li><li>E-mails</li><li>Présentations</li><li>Vocabulaire métier</li><li>Négociation</li></ul></div>
     <div class="panel dark rev"><p style="text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:700;color:#93c5fd">Tarif</p><div class="price">Sur devis<small></small></div><ul class="checks"><li>Anglais des affaires</li><li>Préparation d'entretiens</li><li>Anglais technique</li><li>Communication écrite et orale</li><li>Horaires flexibles</li></ul><a href="./contact.html" class="btn btn-p" style="width:100%">Demander un devis</a></div>
   </div>
 </section>
