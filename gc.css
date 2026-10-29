@@ -164,3 +164,4 @@ nav.mob a.mob-cta:hover{background:#1d4ed8}
 .dd-m b{color:var(--ink);font-weight:600}
 .dd-m small{color:var(--muted);font-size:.8rem}
 .mob-h{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 14px 4px}
+.logo img{width:40px;height:40px;border-radius:10px;object-fit:contain;background:#fff;flex:none}
