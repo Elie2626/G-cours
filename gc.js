@@ -5,9 +5,7 @@ function toggleNav(){
 }
 (function(){
   const nav=document.getElementById('nav');
-  const onScroll=()=>nav&&nav.classList.toggle('s',scrollY>10);
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
-
+  
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.rev').forEach(el=>io.observe(el));
 
