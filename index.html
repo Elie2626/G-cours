@@ -19,16 +19,16 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./gc.css">
 <link rel="stylesheet" href="./folder.css">
 <style>
 /* HERO — G-COURS qui s'écrit */
 .hero{position:relative;padding:calc(var(--nav-h) + 60px) 0 40px;text-align:center;overflow:hidden}
 .hero .eyebrow{font-size:1.15rem;font-weight:600;color:var(--primary);margin-bottom:6px}
-.logo-write{display:block;width:min(92vw,980px);height:auto;margin:0 auto}
-.logo-write text{font:400 210px 'Great Vibes',cursive}
-.lw-stroke{fill:transparent;stroke:#0b1f4d;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:2600;stroke-dashoffset:2600;animation:draw 3.2s cubic-bezier(.55,0,.25,1) .3s forwards}
+.logo-write{display:block;width:min(96vw,1120px);height:auto;margin:0 auto}
+.logo-write text{font:900 250px -apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',sans-serif;letter-spacing:-12px}
+.lw-stroke{fill:transparent;stroke:#0b1f4d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3200;stroke-dashoffset:3200;animation:draw 3.2s cubic-bezier(.55,0,.25,1) .3s forwards}
 .lw-fill{fill:url(#navy);opacity:0;animation:fillin 1.2s ease 2.8s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fillin{to{opacity:1}}
@@ -141,15 +141,15 @@
   <div class="wrap">
     <p class="eyebrow rev">Cours particuliers · Lyon</p>
     <h1 style="margin:0">
-      <svg class="logo-write" viewBox="0 0 1000 260" role="img" aria-label="G-Cours">
+      <svg class="logo-write" viewBox="0 0 1000 270" role="img" aria-label="G-Cours">
         <defs>
           <linearGradient id="navy" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#0b1f4d"/><stop offset=".45" stop-color="#1d4ed8"/><stop offset=".55" stop-color="#60a5fa"/><stop offset="1" stop-color="#0b1f4d"/>
             <animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0" dur="5s" begin="3s" repeatCount="indefinite"/>
           </linearGradient>
         </defs>
-        <text class="lw-fill" x="500" y="195" text-anchor="middle">G-Cours</text>
-        <text class="lw-stroke" x="500" y="195" text-anchor="middle">G-Cours</text>
+        <text class="lw-fill" x="500" y="222" text-anchor="middle">G-Cours</text>
+        <text class="lw-stroke" x="500" y="222" text-anchor="middle">G-Cours</text>
       </svg>
     </h1>
     <p class="lead rev">Les maths, la physique et l'anglais. Enfin clairs.</p>
