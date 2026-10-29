@@ -40,4 +40,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
+  <url><loc>https://g-cours.fr/college-lycee.html</loc><priority>0.8</priority></url>
+  <url><loc>https://g-cours.fr/post-bac.html</loc><priority>0.8</priority></url>
+  <url><loc>https://g-cours.fr/formation.html</loc><priority>0.8</priority></url>
 </urlset>

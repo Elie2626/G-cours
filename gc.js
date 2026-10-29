@@ -4,6 +4,11 @@ function toggleNav(){
   const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);
 }
 (function(){
+  const dd=document.getElementById('dd');
+  if(dd){const b=dd.querySelector('.dd-b'),set=o=>{dd.classList.toggle('open',o);b.setAttribute('aria-expanded',o)};
+    b.addEventListener('click',()=>set(!dd.classList.contains('open')));
+    document.addEventListener('click',e=>{if(!dd.contains(e.target))set(false)});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});}
   const nav=document.getElementById('nav');
   
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
