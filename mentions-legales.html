@@ -1,66 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <title>Mentions légales – G-Cours</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#ffffff;--bg-2:#f1f5f9;--card:#ffffff;--border:rgba(15,23,42,.09);--text:#0f172a;--muted:#64748b;--accent:#38bdf8;--purple:#818cf8;--green:#34d399;--grad:linear-gradient(135deg,#38bdf8,#818cf8);--r:16px;--nav-h:70px}
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-    nav.top{position:fixed;top:0;left:0;right:0;height:var(--nav-h);backdrop-filter:blur(24px);background:rgba(3,13,26,.96);border-bottom:1px solid rgba(255,255,255,.09);z-index:1000}
-    .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;justify-content:space-between;align-items:center}
-    .logo{font-size:1.5rem;font-weight:900;text-decoration:none;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.5px}
-    .nav-links{display:flex;list-style:none;gap:4px}
-    .nav-links a{color:rgba(226,232,240,.72);text-decoration:none;font-weight:500;font-size:.93rem;padding:8px 14px;border-radius:8px;transition:color .2s,background .2s;display:block}
-    .nav-links a:hover{color:#fff;background:rgba(255,255,255,.09)}
-    .nav-links a.active{color:var(--accent)}
-    .burger{display:none;background:none;border:none;cursor:pointer;color:rgba(226,232,240,.82);padding:8px;border-radius:8px;align-items:center;justify-content:center}
-    nav.mob{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(3,13,26,.98);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.09);z-index:999;padding:12px 16px 20px;flex-direction:column;gap:4px}
-    nav.mob.open{display:flex}
-    nav.mob a{color:rgba(226,232,240,.7);text-decoration:none;font-weight:500;font-size:1rem;padding:14px 16px;border-radius:10px;transition:color .2s,background .2s}
-    nav.mob a:hover,nav.mob a.active{color:var(--accent);background:rgba(56,189,248,.1)}
-    .wrap{max-width:800px;margin:0 auto;padding:0 24px}
-    .page-top{padding:calc(var(--nav-h) + 56px) 0 48px}
-    .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.88rem;text-decoration:none;margin-bottom:28px;transition:color .2s}
-    .back-link:hover{color:var(--accent)}
-    h1{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;letter-spacing:-1px;margin-bottom:8px}
-    .updated{color:var(--muted);font-size:.82rem;margin-bottom:48px}
-    .legal-section{margin-bottom:40px}
-    .legal-section h2{font-size:1.05rem;font-weight:700;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);color:var(--text)}
-    .legal-section p{color:var(--muted);font-size:.93rem;line-height:1.8;margin-bottom:10px}
-    .legal-section a{color:var(--accent);text-decoration:none}
-    .legal-section a:hover{text-decoration:underline}
-    footer{background:#071627;border-top:1px solid rgba(255,255,255,.08);padding:40px 24px;margin-top:64px}
-    .foot-bottom{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-    .foot-bottom p{color:rgba(226,232,240,.42);font-size:.82rem}
-    .foot-legal{display:flex;gap:16px;flex-wrap:wrap}
-    .foot-legal a{color:rgba(226,232,240,.35);font-size:.82rem;text-decoration:none;transition:color .2s}
-    .foot-legal a:hover{color:rgba(226,232,240,.7)}
-    @media(max-width:768px){.nav-links{display:none}.burger{display:flex}.foot-bottom{flex-direction:column;text-align:center}}
-  </style>
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./gc.css">
+<style>
+
+.legal{max-width:760px;margin:0 auto;padding:calc(var(--nav-h) + 70px) 20px 100px}
+.legal h1{font-size:clamp(2.6rem,6vw,4rem);margin-bottom:12px}
+.legal h2{font-size:1.4rem;margin:40px 0 12px}
+.legal p,.legal li{color:var(--muted);margin-bottom:10px}
+.legal ul{padding-left:20px}
+.legal a{color:var(--primary)}
+
+</style>
 </head>
 <body>
+<a href="#main" class="skip">Passer au contenu principal</a>
 
-<nav class="top">
-  <div class="nav-inner">
-    <a href="./index.html" class="logo">G-Cours</a>
-    <ul class="nav-links">
+<nav class="top" id="nav">
+  <div class="nav-in">
+    <a href="./index.html" class="logo"><i>G</i>G-Cours</a>
+    <ul class="links">
       <li><a href="./index.html">Accueil</a></li>
-      <li><a href="./reservation.html">Réservation</a></li>
       <li><a href="./a-propos.html">À propos</a></li>
       <li><a href="./Tarifs.html">Tarifs</a></li>
-      <li><a href="./app.html">App</a></li>
+      
       <li><a href="./contact.html">Contact</a></li>
+      <li><a href="./reservation.html" class="cta">Réserver</a></li>
     </ul>
     <button class="burger" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="burger-btn">
-      <svg id="ico-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      <svg id="ico-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
     </button>
   </div>
 </nav>
@@ -69,17 +45,12 @@
   <a href="./reservation.html">Réservation</a>
   <a href="./a-propos.html">À propos</a>
   <a href="./Tarifs.html">Tarifs</a>
-  <a href="./app.html">App</a>
   <a href="./contact.html">Contact</a>
 </nav>
 
-<div class="wrap">
-  <div class="page-top">
-    <a href="./index.html" class="back-link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      Retour à l'accueil
-    </a>
-    <h1>Mentions légales</h1>
+<main id="main">
+<div class="legal">
+<h1>Mentions légales</h1>
     <p class="updated">Dernière mise à jour : juin 2026</p>
 
     <div class="legal-section">
@@ -129,28 +100,31 @@
       <h2>8. Droit applicable</h2>
       <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux compétents seront ceux du ressort du siège de G-Cours.</p>
     </div>
-  </div>
+  
 </div>
+</main>
 
 <footer>
-  <div class="foot-bottom">
-    <p>© 2026 G-Cours – Tous droits réservés</p>
-    <div class="foot-legal">
-      <a href="./mentions-legales.html">Mentions légales</a>
-      <a href="./politique-confidentialite.html">Politique de confidentialité</a>
+  <div class="wrap">
+    <div class="fc">
+      <div><a href="./index.html" class="logo"><i>G</i>G-Cours</a><p>Cours particuliers en maths, physique et anglais pour collégiens et lycéens à Lyon.</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="./index.html">Accueil</a></li><li><a href="./reservation.html">Réservation</a></li><li><a href="./a-propos.html">À propos</a></li><li><a href="./Tarifs.html">Tarifs</a></li><li><a href="./contact.html">Contact</a></li></ul></div>
+      <div><h4>Matières</h4><ul><li><span>Mathématiques</span></li><li><span>Physique-Chimie</span></li><li><span>Anglais</span></li></ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><span>Lyon 69100</span></li>
+        <li><a href="mailto:jonathanamar_177@hotmail.com">jonathanamar_177@hotmail.com</a></li>
+        <li><a href="tel:0619336183">06 19 33 61 83</a></li>
+        <li><a href="https://www.instagram.com/jonathanamar177/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="ig-f" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="50%" stop-color="#dc2743"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="url(#ig-f)" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="url(#ig-f)" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#bc1888"/></svg>@jonathanamar177</a></li>
+      </ul></div>
+    </div>
+    <div class="fb">
+      <p>© 2026 G-Cours – Tous droits réservés</p>
+      <div><a href="./mentions-legales.html">Mentions légales</a><a href="./politique-confidentialite.html">Politique de confidentialité</a><a href="./admin.html">Administration</a></div>
     </div>
   </div>
 </footer>
 
-<script>
-function toggleNav() {
-  const nav = document.getElementById('mob-nav');
-  const btn = document.getElementById('burger-btn');
-  const open = nav.classList.toggle('open');
-  btn.setAttribute('aria-expanded', open);
-  document.getElementById('ico-menu').style.display = open ? 'none' : 'block';
-  document.getElementById('ico-x').style.display = open ? 'block' : 'none';
-}
-</script>
+<script src="./gc.js"></script>
+
 </body>
 </html>
