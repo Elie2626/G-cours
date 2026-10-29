@@ -46,7 +46,7 @@ nav.top{position:fixed;top:12px;left:16px;right:16px;z-index:1000;pointer-events
 .nb-cta:hover .nb-cta-t span+span{transform:none}
 .nb-dot{position:absolute;top:-3px;right:-3px;width:12px;height:12px;border-radius:50%;background:#ef4444;border:2px solid #fff;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(1.25)}}
-.nb-wa{flex:none;width:46px;height:46px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:waglow 2.4s ease-out infinite;transition:transform .2s}
+.nb-wa{position:relative;flex:none;width:46px;height:46px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:waglow 2.4s ease-out infinite;transition:transform .2s}
 .nb-wa:hover{transform:scale(1.07)}
 @keyframes waglow{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}80%,100%{box-shadow:0 0 0 12px rgba(37,211,102,0)}}
 .burger{display:none;width:44px;height:44px;border:none;background:none;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:6px}
